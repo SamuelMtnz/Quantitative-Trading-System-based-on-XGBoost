@@ -143,7 +143,7 @@ TECH_COLS = ["EMA_20","EMA_50","EMA_200","MACD","MACD_hist","RSI","Stoch","ret_1
 # FUNCIONES DE EJECUCIÓN DE MODELOS
 # ======================================================
 def apply_filter(probs, rets, outliers=None):
-    return (probs >= 0.5).astype(int)  # FE no usa el 0.6, justo comparación
+    return (probs >= 0.5).astype(int) 
 
 def run_no_grid(df, horizon_name, horizon, smote=False, outliers=None):
     data = df.copy()
@@ -256,9 +256,6 @@ df = download_data(TICKER, START)
 df = create_features(df)
 save_heatmaps(df, TECH_COLS, FINAL_FEATURES)
 
-# Guardar CSV con features
-df.to_csv(os.path.join(DATA_PATH, f"{TICKER}_FE.csv"))
-
 # Comparaciones
 df_horizons = compare_horizons(df, FINAL_FEATURES, HORIZONS)
 df_grid = compare_grid(df, FINAL_FEATURES, horizon=5)
@@ -282,11 +279,5 @@ print(df_outliers)
 print("\n=== MODELO FINAL SEMANAL ===")
 print(df_final)
 
-# Guardar resultados
-# df_horizons.to_csv(os.path.join(DATA_PATH, "compare_horizons.csv"), index=False)
-# df_grid.to_csv(os.path.join(DATA_PATH, "compare_grid.csv"), index=False)
-# df_outliers.to_csv(os.path.join(DATA_PATH, "compare_outliers.csv"), index=False)
-# df_smote.to_csv(os.path.join(DATA_PATH, "compare_smote.csv"), index=False)
-# df_final.to_csv(os.path.join(DATA_PATH, "final_weekly.csv"), index=False)
 
-print("✅ FE completo ejecutado y resultados guardados.")
+print("✅ FE completo ejecutado")

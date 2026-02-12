@@ -28,9 +28,8 @@ Graphs_FE/
 Models_WF/
 Results_WF/
 Graphs_WF/
-*.pkl
 *.joblib
-Otros/
+*.pkl
 Scripts/03_WF.py
 
 # ==============================

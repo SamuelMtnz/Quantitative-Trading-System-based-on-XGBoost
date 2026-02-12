@@ -4,6 +4,17 @@ import joblib
 from pathlib import Path
 
 st.set_page_config(layout="wide", page_title="XGB Trading System Dashboard")
+st.markdown("""
+<div style="background-color:#111111;padding:15px;border-radius:10px;border:1px solid #333;">
+<b>⚠️ Academic & Demonstration Disclaimer</b><br>
+This dashboard is presented for academic purposes only.  
+All tabular metrics displayed in this online version are illustrative demo values.  
+
+Only the graphical equity curves and visual outputs correspond to real backtesting results.  
+No trading signals, model parameters, or proprietary components are exposed in this public deployment.
+</div>
+""", unsafe_allow_html=True)
+
 
 MODELS = Path("public_data")
 RESULTS = Path("public_data")
@@ -259,4 +270,16 @@ sino de una ventaja estadística distribuida.
 ✔ Consistencia estadística en la microestructura  
 
 **Resultado:** Sistema cuantitativo robusto, orientado a estabilidad más que a volatilidad.
+
+---
+### ⚖️ Transparencia Académica
+
+La versión pública del dashboard presenta:
+
+- Métricas tabulares simuladas con fines demostrativos.
+- Gráficos de equity reales generados a partir del backtesting original.
+- Ausencia deliberada de señales, modelos entrenados y datasets propietarios.
+
+El objetivo es preservar la integridad metodológica sin exponer propiedad intelectual.
+
 """)

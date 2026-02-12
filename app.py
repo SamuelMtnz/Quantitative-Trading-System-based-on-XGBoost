@@ -5,9 +5,9 @@ from pathlib import Path
 
 st.set_page_config(layout="wide", page_title="XGB Trading System Dashboard")
 
-MODELS = Path("Models_WF")
-RESULTS = Path("Results_WF/metrics")
-GRAPHS = Path("Graphs_WF")
+MODELS = Path("public_data")
+RESULTS = Path("public_data")
+GRAPHS = Path("public_graphs")
 
 # =========================
 # LOAD DATA
@@ -15,7 +15,7 @@ GRAPHS = Path("Graphs_WF")
 @st.cache_data
 def load_data():
 
-    demo_mode = not (MODELS / "wf_results.pkl").exists()
+    demo_mode = not (MODELS / "wf_results_public.pkl").exists()
 
     if demo_mode:
         # ======================
@@ -64,12 +64,11 @@ def load_data():
         # ======================
         # REAL DATA (LOCAL ONLY)
         # ======================
-        all_wf = joblib.load(MODELS / "wf_results.pkl")
-        df_metrics = joblib.load(RESULTS / "wf_metrics.pkl")
-        df_comp = joblib.load(RESULTS / "comparison.pkl")
-        df_comp_aligned = joblib.load(RESULTS / "comparison_aligned.pkl")
-        df_trade_stats = joblib.load(RESULTS / "trade_stats.pkl")
-
+        all_wf = joblib.load(MODELS / "wf_results_public.pkl")
+        df_metrics = joblib.load(RESULTS / "wf_metrics_public.pkl")
+        df_comp = joblib.load(RESULTS / "comparison_public.pkl")
+        df_comp_aligned = joblib.load(RESULTS / "comparison_aligned_public.pkl")
+        df_trade_stats = joblib.load(RESULTS / "trade_stats_public.pkl")
     return all_wf, df_metrics, df_comp, df_comp_aligned, df_trade_stats
 
 # 🔹 SIEMPRE SE DEFINEN

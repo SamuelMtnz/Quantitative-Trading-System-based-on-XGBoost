@@ -66,7 +66,7 @@ Se evalúa el sistema bajo un marco de **Walk Forward**, simulando condiciones r
     col4.metric("Max DD Medio", f"{df_metrics['Max DD %'].mean():.2f}%")
 
     st.markdown("### Equity Global Normalizada")
-    st.image(GRAPHS / "eq_global_normalized.png", use_column_width=True)
+    st.image(GRAPHS / "eq_global_normalized.png", use_container_width=True)
 
 # ==========================================================
 # 2️⃣ WALK FORWARD

@@ -14,13 +14,65 @@ GRAPHS = Path("Graphs_WF")
 # =========================
 @st.cache_data
 def load_data():
-    wf_results = joblib.load(MODELS / "wf_results.pkl")
-    wf_metrics = joblib.load(RESULTS / "wf_metrics.pkl")
-    comparison = joblib.load(RESULTS / "comparison.pkl")
-    comparison_aligned = joblib.load(RESULTS / "comparison_aligned.pkl")
-    trade_stats = joblib.load(RESULTS / "trade_stats.pkl")
-    return wf_results, wf_metrics, comparison, comparison_aligned, trade_stats
 
+    demo_mode = not (MODELS / "wf_results.pkl").exists()
+
+    if demo_mode:
+        # ======================
+        # DEMO DATA
+        # ======================
+
+        df_metrics = pd.DataFrame({
+            "Ticker": ["AAPL", "SPY", "NVDA"],
+            "Final Capital": [82000, 22500, 150000],
+            "Total Return %": [720, 125, 1400],
+            "CAGR %": [33, 11, 44],
+            "Max DD %": [-18, -20, -37],
+            "Sharpe": [2.9, 1.6, 2.2],
+            "MAR": [1.8, 0.56, 1.2],
+            "Expectancy": [0.0028, 0.0010, 0.0044],
+            "Trades": [310, 280, 295]
+        })
+
+        df_comp_aligned = pd.DataFrame({
+            "Ticker": ["AAPL", "SPY", "NVDA"],
+            "Modelo": ["XGB", "XGB", "XGB"],
+            "CAGR %": [33, 11, 44],
+            "Max DD %": [-18, -20, -37],
+            "Sharpe": [2.9, 1.6, 2.2],
+            "Exposure %": [28, 31, 26],
+        })
+
+        df_comp_aligned["Capital Efficiency"] = (
+            df_comp_aligned["CAGR %"] /
+            df_comp_aligned["Exposure %"]
+        )
+
+        df_comp = df_comp_aligned.copy()
+
+        df_trade_stats = pd.DataFrame({
+            "Win Rate %": [54],
+            "Avg Win": [0.021],
+            "Avg Loss": [-0.015],
+            "Payoff Ratio": [1.4],
+            "Expectancy": [0.0025]
+        })
+
+        all_wf = None
+
+    else:
+        # ======================
+        # REAL DATA (LOCAL ONLY)
+        # ======================
+        all_wf = joblib.load(MODELS / "wf_results.pkl")
+        df_metrics = joblib.load(RESULTS / "wf_metrics.pkl")
+        df_comp = joblib.load(RESULTS / "comparison.pkl")
+        df_comp_aligned = joblib.load(RESULTS / "comparison_aligned.pkl")
+        df_trade_stats = joblib.load(RESULTS / "trade_stats.pkl")
+
+    return all_wf, df_metrics, df_comp, df_comp_aligned, df_trade_stats
+
+# 🔹 SIEMPRE SE DEFINEN
 all_wf, df_metrics, df_comp, df_comp_aligned, df_trade_stats = load_data()
 
 # =========================

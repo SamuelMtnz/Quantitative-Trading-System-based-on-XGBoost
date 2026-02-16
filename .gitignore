@@ -29,9 +29,9 @@ Models_WF/
 Results_WF/
 Graphs_WF/
 *.joblib
-*.pkl
+
 Scripts/03_WF.py
-public_data/
+
 # ==============================
 # DATASETS
 # ==============================

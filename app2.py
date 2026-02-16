@@ -5,7 +5,16 @@ from pathlib import Path
 from Scripts.f import predict
 
 st.set_page_config(layout="wide", page_title="XGB Trading System Dashboard")
+st.markdown("""
+<div style="background-color:#111111;padding:15px;border-radius:10px;border:1px solid #333;">
+<b>⚠️ Academic & Demonstration Disclaimer</b><br>
+This dashboard is presented for academic purposes only.  
+All tabular metrics displayed in this online version are illustrative demo values.  
 
+Only the graphical equity curves and visual outputs correspond to real backtesting results.  
+No trading signals, model parameters, or proprietary components are exposed in this public deployment.
+</div>
+""", unsafe_allow_html=True)
 
 
 BASE_DIR = Path(__file__).resolve().parent
